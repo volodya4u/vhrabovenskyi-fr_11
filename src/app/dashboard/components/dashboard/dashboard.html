@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="form-group has-feedback pull-left projectName">
+        <a>{{$ctrl.project.Name}}</a>
+    </div>
+    <button type="button" ng-click="$ctrl.createTicket()" class="btn btn-primary pull-right">New ticket</button>
+</div>
+<div class="container">
+    <div class="row">
+        <div ng-if="$ctrl.dataLoading" class="item_toolbar">
+            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </div>
+    <div ng-if="!$ctrl.dataLoading" class="row">
+        <div ng-repeat="list in $ctrl.models" class="col-md-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{list.listName}}</h3>
+                </div>
+                <div class="panel-body">
+                    <ul dnd-list dnd-drop="$ctrl.onDrop(list, item, index, $index)" ng-init="parrentIndex = $index">
+                        <li ng-repeat="item in list.items track by $index"
+                            dnd-draggable="$ctrl.getSelectedItemsIncluding(list, item)"
+                            dnd-dragstart="$ctrl.onDragstart(list, event)"
+                            dnd-moved="$ctrl.onMoved(list)"
+                            dnd-dragend="list.dragging = false"
+                            dnd-selected="item.selected = !item.selected"
+                            ng-class="{'selected': item.selected}"
+                            ng-hide="list.dragging && item.selected"
+                            class="col-md-12"
+                            >
+                                <div ng-init="$ctrl.open[parrentIndex][$index] = false" ng-mouseover="$ctrl.open[parrentIndex][$index] = true"
+                                    ng-mouseleave="$ctrl.open[parrentIndex][$index] = false">
+                                    <div ng-show="$ctrl.open[parrentIndex][$index]" class="pull-right">
+                                        <a ng-click="$ctrl.edit(item)">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <a ng-click="$ctrl.remove(item.Id)">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
+                                    </div>
+                                    <i class="glyphicon glyphicon-tasks text-danger"></i>
+                                    <p>{{item.Name}}</p>
+                                    <p>{{item.Description}}</p>
+                                    <p>{{item.Responsible.FullName}}</p>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

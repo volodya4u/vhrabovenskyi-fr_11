@@ -1,0 +1,18 @@
+[
+	{"id": 1, "name": "New York"},
+	{"id": 2, "name": "London"},
+	{"id": 3, "name": "Kharkiv"},
+	{"id": 4, "name": "St.Petersburg"},
+	{"id": 5, "name": "Voronezh"},
+	{"id": 6, "name": "Kherson"},
+	{"id": 7, "name": "Zug"},
+	{"id": 8, "name": "Kyiv"},
+	{"id": 9, "name": "Dnepr"},
+	{"id": 10, "name": "Odessa"},
+	{"id": 11, "name": "Lublin"},
+	{"id": 12, "name": "Buenos Aires"},
+	{"id": 13, "name": "Wroclaw"},
+	{"id": 14, "name": "Riga"},
+	{"id": 15, "name": "Sofia"},
+	{"id": 16, "name": "Wroclaw"}
+]

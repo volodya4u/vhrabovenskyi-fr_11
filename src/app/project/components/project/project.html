@@ -1,0 +1,59 @@
+<div class="pre-x-scrollable">
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="13.5%">Timesheets</th>
+                <th width="3%">
+                    <a ng-click="$ctrl.minusWeek()">
+                        <i class="glyphicon glyphicon-arrow-left"></i>
+                    </a>
+                </th>
+                <th width="11.5%" ng-repeat="date in $ctrl.showWeek()">{{date}}</th>
+                <th width="3%">
+                    <a ng-click="$ctrl.plusWeek()">
+                        <i class="glyphicon glyphicon-arrow-right"></i>
+                    </a>
+                </th>
+            </tr>
+            <tr>
+                <th ng-if="$ctrl.dataLoading" class="item_toolbar">
+                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-if="!$ctrl.dataLoading" ng-repeat="project in $ctrl.projects track by $index" class="data">
+            <tr>
+                <td class="projectName">
+                    <a ui-sref="app.dashboard({projectId: project.Id})">{{project.Name}}</a>
+                </td>
+            </tr>
+            <tr ng-repeat="ticket in project.Tickets">
+                <td width="13.5%">
+                    <i class="glyphicon glyphicon-tasks text-danger"></i>
+                    {{ticket.Name}}
+                </td>
+                <td width="3%"></td>
+                <td width="11.5%" ng-repeat="item in ticket.TimeSheets track by $index" class="timesheetPadding">
+                    <button ng-click="item.showTooltip = !item.showTooltip" ng-mouseleave="item.showTooltip = true" ng-model="item.timeSheet.LoggedTime"
+                        ng-class="{ 'comment' : item.timeSheet !== null && item.timeSheet !== undefined && item.timeSheet.Comment !== null && item.timeSheet.Comment !== ''}"
+                        class="project form-control">
+                        <p class="vertical-center">{{item.timeSheet.LoggedTime}}</p>
+                    </button>
+                    <md-tooltip ng-class="{ 'tooltip' : item.showTooltip }" md-direction="top" ng-if="item.timeSheet !== null && item.timeSheet !== undefined && item.timeSheet.Comment !== null && item.timeSheet.Comment !== ''">
+                        {{item.timeSheet.Comment}}
+                    </md-tooltip>
+                    <a ng-click="$ctrl.addHours(item, ticket.Id)">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </a>
+                </td>
+                <td width="3%"></td>
+            </tr>
+            <tr>
+                <td width="13.5%"><b>Total</b></td>
+                <td width="3%"></td>
+                <td width="11.5%" ng-repeat="item in project.Total track by $index"><b>{{item}}</b></td>
+                <td width="3%"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

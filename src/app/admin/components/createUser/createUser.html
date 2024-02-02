@@ -1,0 +1,93 @@
+<form ng-submit="$ctrl.save($ctrl.addAdminUserForm)" aria-label="Add Page" name="addAdminUserForm" class="AddItem border border-light">
+    <div class="upper-content">
+        <h2>Add User</h2>
+        <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+            <i class="glyphicon glyphicon-remove" aria-label="Close dialog"></i>
+        </md-button>
+        <div class="col-2 pl1">
+            <input name="first" type="text" ng-model="$ctrl.addAdminUserForm.First" class="form-control"
+                    required pattern="{{$ctrl.textPattern}}"
+                    placeholder="First name"
+                    minlength="2" maxlength="40">
+            <span style="color:red" ng-show="addAdminUserForm.first.$dirty && addAdminUserForm.first.$invalid">
+            <p ng-show="addAdminUserForm.first.$error.required">First name is required</p>
+            <p ng-show="addAdminUserForm.first.$error.pattern">Name must consist only of letters and digits</p>
+            <p ng-show="addAdminUserForm.first.$error.minlength || addAdminUserForm.first.$error.maxlength">Please enter value between than or equal 2-40 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="last" type="text" ng-model="$ctrl.addAdminUserForm.Last" class="form-control"
+                    required pattern="{{$ctrl.textPattern}}"
+                    placeholder="Last name"
+                    minlength="2" maxlength="40">
+            <span style="color:red" ng-show="addAdminUserForm.last.$dirty && addAdminUserForm.last.$invalid">
+            <p ng-show="addAdminUserForm.last.$error.required">Last name is required</p>
+            <p ng-show="addAdminUserForm.last.$error.pattern">Name must consist only of letters and digits</p>
+            <p ng-show="addAdminUserForm.last.$error.minlength || addAdminUserForm.last.$error.maxlength">Please enter value between than or equal 2-40 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="email" type="email" ng-model="$ctrl.addAdminUserForm.Email" class="form-control"
+                    required placeholder="E-mail" maxlength="60">
+            <span style="color:red" ng-show="addAdminUserForm.email.$dirty && addAdminUserForm.email.$invalid">
+            <p ng-show="addAdminUserForm.email.$error.required">Email is required</p>
+            <p ng-show="addAdminUserForm.email.$error.email">Invalid email address</p>
+            <p ng-show="addAdminUserForm.email.$error.maxlength">Please enter value less than 60 characters</p>
+        </div>
+        <md-input-container class="col-2 pl1">
+            <md-select ng-model="$ctrl.addAdminUserForm.LocationId" placeholder="Location">
+                <md-option ng-value="location.id" ng-repeat="location in $ctrl.locations">{{ location.name }}</md-option>
+            </md-select>
+        </md-input-container>
+        <div class="col-2 pl1">
+            <input name="birthday" type="date" ng-model="$ctrl.addAdminUserForm.Birthday" class="form-control"
+                    required placeholder="Birthday">
+            <span style="color:red" ng-show="addAdminUserForm.birthday.$dirty && addAdminUserForm.birthday.$invalid">
+            <p ng-show="addAdminUserForm.birthday.$error.required">Date of Birthday is required</p>
+            <p ng-show="addAdminUserForm.birthday.$error.date">Invalid date</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="address" type="text" ng-model="$ctrl.addAdminUserForm.Address" class="form-control"
+                        required pattern="{{$ctrl.detailsPattern}}"
+                        placeholder="Address"
+                        minlength="10" maxlength="80">
+            <span style="color:red" ng-show="addAdminUserForm.address.$dirty && addAdminUserForm.address.$invalid">
+            <p ng-show="addAdminUserForm.address.$error.required">Address is required</p>
+            <p ng-show="addAdminUserForm.address.$error.pattern">Address must consist only of letters and digits</p>
+            <p ng-show="addAdminUserForm.address.$error.minlength || addAdminUserForm.address.$error.maxlength">Please enter value between than or equal 10-80 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="skype" type="text" ng-model="$ctrl.addAdminUserForm.Skype" class="form-control"
+                        required pattern="{{$ctrl.textPattern}}"
+                        placeholder="Skype"
+                        minlength="2" maxlength="80">
+            <span style="color:red" ng-show="addAdminUserForm.skype.$dirty && addAdminUserForm.skype.$invalid">
+            <p ng-show="addAdminUserForm.skype.$error.required">Skype is required</p>
+            <p ng-show="addAdminUserForm.skype.$error.pattern">Skype must consist only of letters and digits</p>
+            <p ng-show="addAdminUserForm.skype.$error.minlength || addAdminUserForm.skype.$error.maxlength">Skype enter value between than or equal 2-80 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="phone" type="tel" ng-model="$ctrl.addAdminUserForm.Phone" class="form-control"
+                        required pattern="{{$ctrl.phonePattern}}"
+                        placeholder="Phone">
+            <span style="color:red" ng-show="addAdminUserForm.phone.$dirty && addAdminUserForm.phone.$invalid">
+            <p ng-show="addAdminUserForm.phone.$error.required">Phone is required</p>
+            <p ng-show="addAdminUserForm.phone.$error.pattern">Please follow format: ### ### ## ##</p>
+        </div>
+        <md-input-container class="col-2 pl1">
+            <md-select ng-model="$ctrl.addAdminUserForm.PositionId" placeholder="Position">
+                <md-option ng-value="position.id" ng-repeat="position in $ctrl.positions">{{ position.name }}</md-option>
+            </md-select>
+        </md-input-container>
+        <div class="col-2 pl1">
+            <input name="password" type="password" ng-model="$ctrl.addAdminUserForm.Password" class="form-control"
+                    required placeholder="Password"
+                    minlength="6" maxlength="40">
+            <span style="color:red" ng-show="addAdminUserForm.password.$dirty && addAdminUserForm.password.$invalid">
+            <p ng-show="addAdminUserForm.password.$error.required">Password is required</p>
+            <p ng-show="addAdminUserForm.password.$error.password">Invalid password</p>
+            <p ng-show="addAdminUserForm.password.$error.minlength || addAdminUserForm.password.$error.maxlength">Please enter value between than or equal 6-40 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <button type="submit" ng-disabled="addAdminUserForm.$invalid" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>

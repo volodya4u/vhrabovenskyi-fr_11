@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="main">Project Tracker</a>
+    </div>
+    <div class="navbar-collapse collapse" id="myNavbar" >
+      <ul class="nav navbar-nav" ng-if="$root.showNavElements" >
+        <li ui-sref-active-eq="active"><a ui-sref="app">Home</a></li>
+        <li ng-if="$root.token.isAdmin" ui-sref-active-eq="active"><a ui-sref=".admin">Admin</a></li>
+        <!-- <li ui-sref-active-eq="active"><a ui-sref=".dashboard">Dashboard</a></li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right" ng-if="$root.showNavElements" >
+        <li ui-sref-active-eq="active"><a>Hello, {{$root.token.FullName || $root.token.Login}}</a></li>
+        <li ng-click="$ctrl.logout()" ui-sref-active-eq="active"><a>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

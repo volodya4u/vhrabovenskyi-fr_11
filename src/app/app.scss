@@ -1,0 +1,62 @@
+/* GLOBAL STYLES ARE DESCRIBED HERE */
+
+@import "../assets/bootstrap/bootstrap";
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+html {
+    position: inherit;
+}
+
+md-dialog {
+    position: fixed !important;
+}
+
+.md-dialog-is-showing {
+    position: inherit !important;
+}
+
+thead,
+tbody {
+    display: block !important;
+}
+
+td, th {
+    overflow: hidden;
+    text-align: left;
+}
+
+tr {
+    display: flex !important;
+}
+
+th {
+    background: #f8f8f8 !important;
+}
+
+td {
+    word-wrap: break-word;
+    padding: 8px;
+}
+
+.pre-x-scrollable {
+    overflow: auto;
+    word-wrap: normal;
+    overflow-wrap: normal;
+}
+
+.AddItem {
+    min-width: 430px;
+    font-size: 1.4rem;
+    h2 { margin-top: 20px; margin-bottom: 20px; padding-left: 1rem; font-size: 1.7em; color: #52698D; }
+    .form-control { width: 60% !important; }
+    .col-2 { position: relative; }
+    .md-icon-button { position: absolute; top: 1rem; right: 0; }
+    .upper-content .col-2, .upper-content .col-1 {padding-bottom: 2rem; }
+    .col-2.pr1 {padding-right: 1rem;}
+    .col-2.pl1 {padding-left: 1rem;}
+}
+
+[ng-click] {
+    cursor: pointer;
+}

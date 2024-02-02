@@ -1,0 +1,7 @@
+[
+	{"id": 1, "name": "Open"},
+	{"id": 2, "name": "Development"},
+	{"id": 3, "name": "Ready for QA"},
+	{"id": 4, "name": "Test"},
+	{"id": 5, "name": "Closed"}
+]

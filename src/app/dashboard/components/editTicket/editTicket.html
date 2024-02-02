@@ -1,0 +1,52 @@
+<form ng-submit="$ctrl.edit($ctrl.data)" aria-label="Edit Page" name="editTicketForm" class="AddItem border border-light">
+    <div class="upper-content">
+        <h2>Edit ticket</h2>
+        <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+            <i class="glyphicon glyphicon-remove" aria-label="Close dialog"></i>
+        </md-button>
+        <div class="col-2 pl1">
+            <input name="name" type="text" ng-model="$ctrl.data.Name" class="form-control"
+                    required pattern="{{$ctrl.text}}"
+                    placeholder="Name"
+                    minlength="2" maxlength="40">
+            <span style="color:red" ng-show="editTicketForm.name.$dirty && editTicketForm.name.$invalid">
+            <p ng-show="editTicketForm.name.$error.required">Name is required</p>
+            <p ng-show="editTicketForm.name.$error.pattern">Name must consist only of letters and digits</p>
+            <p ng-show="editTicketForm.name.$error.minlength || editTicketForm.name.$error.maxlength">Please enter value between than or equal 2-40 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="description" type="text" ng-model="$ctrl.data.Description" class="form-control"
+                    required pattern="{{$ctrl.details}}"
+                    placeholder="Description"
+                    minlength="2" maxlength="80">
+            <span style="color:red" ng-show="editTicketForm.description.$dirty && editTicketForm.description.$invalid">
+            <p ng-show="editTicketForm.description.$error.required">Description is required</p>
+            <p ng-show="editTicketForm.description.$error.pattern">Description must consist only of letters and digits</p>
+            <p ng-show="editTicketForm.description.$error.minlength || editTicketForm.description.$error.maxlength">Please enter value between than or equal 2-80 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="estimate" type="number" ng-model="$ctrl.data.Estimate" class="form-control"
+                    required
+                    placeholder="Estimate"
+                    min="0"
+                    maxlength="3">
+            <span style="color:red" ng-show="editTicketForm.estimate.$dirty && editTicketForm.estimate.$invalid">
+            <p ng-show="editTicketForm.estimate.$error.required">Estimate is required</p>
+            <p ng-show="editTicketForm.estimate.$error.min">Positive value required</p>
+            <p ng-show="editTicketForm.estimate.$error.maxlength">Please enter value less than or equal 3 digits</p>
+        </div>
+        <md-input-container class="col-2 pl1">
+            <md-select ng-model="$ctrl.data.ResponsibleId" placeholder="Responsible">
+                <md-option ng-value="responsible.Id" ng-repeat="responsible in $ctrl.users">{{ responsible.FullName }}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="col-2 pl1">
+            <md-select ng-model="$ctrl.data.TypeId" placeholder="Ticket Type">
+                <md-option ng-value="type.id" ng-repeat="type in $ctrl.types">{{ type.name }}</md-option>
+            </md-select>
+        </md-input-container>
+        <div class="col-2 pl1">
+            <button type="submit" ng-disabled="editTicketForm.$invalid" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>

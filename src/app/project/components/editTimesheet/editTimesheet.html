@@ -1,0 +1,32 @@
+<form ng-submit="$ctrl.edit($ctrl.data)" name="editTimeSheetForm" class="AddItem border border-light" aria-label="Edit Page">
+    <div class="upper-content">
+        <h2>Edit Timesheet</h2>
+        <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+            <i class="glyphicon glyphicon-remove" aria-label="Close dialog"></i>
+        </md-button>
+        <div class="col-2 pl1">
+            <input name="timeSheet" type="number" ng-model="$ctrl.data.LoggedTime" class="form-control"
+                    required
+                    placeholder="TimeSheet"
+                    min="0"
+                    maxlength="2">
+            <span style="color:red" ng-show="editTimeSheetForm.timeSheet.$dirty && editTimeSheetForm.timeSheet.$invalid">
+            <p ng-show="editTimeSheetForm.timeSheet.$error.required">Timesheet is required</p>
+            <p ng-show="editTimeSheetForm.timeSheet.$error.min">Positive value required</p>
+            <p ng-show="editTimeSheetForm.timeSheet.$error.maxlength">Please enter value less than 2 digits</p>
+        </div>
+        <div class="col-2 pl1">
+            <input name="comment" type="text" ng-model="$ctrl.data.Comment" class="form-control"
+                    required pattern="{{$ctrl.pattern}}"
+                    placeholder="Comment"
+                    minlength="2" maxlength="40">
+            <span style="color:red" ng-show="editTimeSheetForm.comment.$dirty && editTimeSheetForm.comment.$invalid">
+            <p ng-show="editTimeSheetForm.comment.$error.required">Comment is required</p>
+            <p ng-show="editTimeSheetForm.comment.$error.pattern">Comment must consist only of letters and digits</p>
+            <p ng-show="editTimeSheetForm.comment.$error.minlength || editTimeSheetForm.comment.$error.maxlength">Please enter value between than or equal 2-40 characters</p>
+        </div>
+        <div class="col-2 pl1">
+            <button type="submit" ng-disabled="editTimeSheetForm.$invalid" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>
