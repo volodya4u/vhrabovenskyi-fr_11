@@ -48,7 +48,7 @@
     "karma": "^6.4.4",
     "karma-angular-filesort": "^1.0.0",
     "karma-babel-preprocessor": "^6.0.1",
-    "karma-coverage": "^1.1.1",
+    "karma-coverage": "^2.2.1",
     "karma-jasmine": "^1.0.2",
     "karma-junit-reporter": "^1.1.0",
     "karma-ng-html2js-preprocessor": "^0.2.0",
