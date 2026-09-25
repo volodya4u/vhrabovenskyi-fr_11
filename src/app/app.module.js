@@ -1,6 +1,8 @@
 // DEPENDENCIES
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+// Registers the 'ui.router' module. Its ES module build's default export doesn't survive
+// Babel's interop under webpack 2, so the module is referenced by name below.
+import 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 import ngCookies from 'angular-cookies';
 import cgNotify from '@cgross/angular-notify';
@@ -39,7 +41,7 @@ import 'angular-drag-and-drop-lists/angular-drag-and-drop-lists';
 angular
   .module('app', [
     // DEPENDENCIES
-    uiRouter,
+    'ui.router',
     uiBootstrap,
     ngCookies,
     cgNotify,
