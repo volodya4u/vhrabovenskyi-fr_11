@@ -4,3 +4,15 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    # The build runs on webpack 2 (beta). Major releases of webpack and its
+    # loaders/plugins need webpack 4-5 and break the build, so skip them until
+    # the toolchain is migrated.
+    ignore:
+      - dependency-name: "webpack*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "*-loader"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "*-webpack-plugin"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "karma-webpack"
+        update-types: ["version-update:semver-major"]
