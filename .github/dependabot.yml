@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     # The build runs on webpack 2 (beta). Major releases of webpack and its
     # loaders/plugins need webpack 4-5 and break the build, so skip them until
     # the toolchain is migrated.
