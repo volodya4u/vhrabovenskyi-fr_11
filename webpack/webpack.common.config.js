@@ -1,40 +1,79 @@
-const webpack = require('webpack');
+const path = require('path');
 
-const loaders = require('./helpers/webpack.loaders.config');
-const preloaders = require('./helpers/webpack.preloaders.config');
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: ['./src/app/app.module.js'],
-    output: {
-        filename: 'build.js',
-        path: './dist'
-    },
-    resolve: {
-        root: __dirname,
-        extensions: ['', '.js', '.json']
-    },
-    resolveLoader: {
-        modulesDirectories: ['node_modules']
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            inject: 'body',
-            hash: true
-        }),
-        new CopyWebpackPlugin([{
-            from: './src/assets/',
-            to: 'assets/',
-            ignore: [
-                '*.scss'
-            ]
-        }])
-    ],
-    module:{
-        preloaders: preloaders,
-        loaders: loaders
-    }
+  entry: path.resolve(__dirname, '../src/app/app.module.js'),
+  output: {
+    clean: true,
+    filename: 'build.js',
+    path: path.resolve(__dirname, '../dist')
+  },
+  resolve: {
+    extensions: ['.js', '.json']
+  },
+  plugins: [
+    new ESLintPlugin({
+      extensions: ['js']
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../src/index.html'),
+      inject: 'body',
+      hash: true
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, '../src/assets'),
+          to: 'assets',
+          globOptions: {
+            ignore: ['**/*.scss']
+          }
+        }
+      ]
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.html$/,
+        exclude: path.resolve(__dirname, '../src/index.html'),
+        type: 'asset/source'
+      },
+      {
+        test: /\.(woff2?|ttf|eot|svg)(\?v=[0-9.]+)?$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext]'
+        }
+      },
+      {
+        test: /\.(png|jpe?g)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024
+          }
+        },
+        generator: {
+          filename: 'assets/images/[name][ext]'
+        }
+      }
+    ]
+  }
 };
