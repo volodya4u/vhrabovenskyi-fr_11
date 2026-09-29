@@ -1,12 +1,13 @@
 {
   "presets": [
-    "es2015"
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
   ],
-  "env": {
-    "test": {
-      "plugins": [
-        "istanbul"
-      ]
-    }
-  }
+  "plugins": [
+    "angularjs-annotate"
+  ]
 }
